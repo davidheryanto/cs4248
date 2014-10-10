@@ -58,88 +58,7 @@
     <favorites_list name="pos-tagger" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="build_tagger.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/build_tagger.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.48868778" vertical-offset="291" max-vertical-offset="1605">
-              <caret line="40" column="35" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="URLClassLoader.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_20/src.zip!/java/net/URLClassLoader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4326" max-vertical-offset="11145">
-              <caret line="376" column="0" selection-start-line="376" selection-start-column="0" selection-end-line="376" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AccessController.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_20/src.zip!/java/security/AccessController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="9264" max-vertical-offset="13035">
-              <caret line="651" column="8" selection-start-line="651" selection-start-column="8" selection-end-line="651" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ClassLoader.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_20/src.zip!/java/lang/ClassLoader.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="5466" max-vertical-offset="31950">
-              <caret line="435" column="0" selection-start-line="435" selection-start-column="0" selection-end-line="435" selection-end-column="0" />
-              <folding>
-                <element signature="e#13537#13538#0" expanded="true" />
-                <element signature="e#13582#13583#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LauncherHelper.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_20/jre/lib/rt.jar!/sun/launcher/LauncherHelper.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1044" max-vertical-offset="2430">
-              <caret line="68" column="37" selection-start-line="68" selection-start-column="37" selection-end-line="68" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Launcher.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://C:/Program Files/Java/jdk1.8.0_20/jre/lib/rt.jar!/sun/misc/Launcher.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="399" max-vertical-offset="1320">
-              <caret line="32" column="34" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ConditionalProbability.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ConditionalProbability.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="690">
-              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-              <folding>
-                <element signature="e#247#248#0" expanded="true" />
-                <element signature="e#275#276#0" expanded="true" />
-                <element signature="e#307#308#0" expanded="true" />
-                <element signature="e#335#336#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -239,6 +158,7 @@
     <property name="recentsLimit" value="5" />
     <property name="dynamic.classpath" value="false" />
     <property name="LayoutCode.rearrangeEntriesJava" value="true" />
+    <property name="FullScreen" value="false" />
   </component>
   <component name="RunManager" selected="Application.build_tagger">
     <configuration default="false" name="build_tagger" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -395,14 +315,14 @@
   <component name="ShelveChangesManager" show_recycled="false" />
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="974" height="1047" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JavaEE:App" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21967213" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.21967213" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -459,20 +379,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ConditionalProbability.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="690">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <element signature="e#247#248#0" expanded="true" />
-            <element signature="e#275#276#0" expanded="true" />
-            <element signature="e#307#308#0" expanded="true" />
-            <element signature="e#335#336#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="660">
+          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_20/src.zip!/java/security/AccessController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="9256" max-vertical-offset="13035">
+        <state vertical-scroll-proportion="0.19004525" vertical-offset="9264" max-vertical-offset="13035">
           <caret line="651" column="8" selection-start-line="651" selection-start-column="8" selection-end-line="651" selection-end-column="8" />
           <folding />
         </state>
@@ -480,7 +395,7 @@
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_20/jre/lib/rt.jar!/sun/misc/Launcher.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="399" max-vertical-offset="1320">
+        <state vertical-scroll-proportion="0.18367347" vertical-offset="399" max-vertical-offset="1320">
           <caret line="32" column="34" selection-start-line="32" selection-start-column="34" selection-end-line="32" selection-end-column="34" />
           <folding />
         </state>
@@ -488,7 +403,7 @@
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_20/jre/lib/rt.jar!/sun/launcher/LauncherHelper.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1044" max-vertical-offset="2430">
+        <state vertical-scroll-proportion="0.18367347" vertical-offset="1044" max-vertical-offset="2430">
           <caret line="68" column="37" selection-start-line="68" selection-start-column="37" selection-end-line="68" selection-end-column="37" />
           <folding />
         </state>
@@ -510,7 +425,7 @@
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_20/src.zip!/java/lang/ClassLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="5349" max-vertical-offset="31950">
+        <state vertical-scroll-proportion="0.20991254" vertical-offset="5466" max-vertical-offset="31950">
           <caret line="435" column="0" selection-start-line="435" selection-start-column="0" selection-end-line="435" selection-end-column="0" />
           <folding>
             <element signature="e#13537#13538#0" expanded="true" />
@@ -521,7 +436,7 @@
     </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_20/src.zip!/java/net/URLClassLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4704" max-vertical-offset="11145">
+        <state vertical-scroll-proportion="0.760181" vertical-offset="4326" max-vertical-offset="11145">
           <caret line="376" column="0" selection-start-line="376" selection-start-column="0" selection-end-line="376" selection-end-column="0" />
           <folding />
         </state>
@@ -529,8 +444,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/build_tagger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48868778" vertical-offset="291" max-vertical-offset="1605">
-          <caret line="40" column="35" selection-start-line="40" selection-start-column="35" selection-end-line="40" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.1040724" vertical-offset="291" max-vertical-offset="1605">
+          <caret line="24" column="43" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
