@@ -1,10 +1,8 @@
+import com.google.gson.Gson;
 import com.sun.org.apache.xpath.internal.operations.Mod;
 import javafx.util.Pair;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -15,21 +13,43 @@ public class build_tagger {
     private static Model transitionProbability = new Model();
     private static Model observationLikelihood = new Model();
 
-    public static void main(String[] args) throws IOException {
-        args = new String[3];
-        args[0] = "data/short.train";
-        args[1] = "data/short.devt";
-        args[2] = "model";
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+//        args = new String[3];
+//        args[0] = "data/short.train";
+//        args[1] = "data/short.devt";
+//        args[2] = "model";
+//
+//        File trainFile = new File(args[0]);
+//        File develFile = new File(args[1]);
+//        File modelFile = new File(args[2]);
+//
+//        if (modelFile.exists()) {
+//            modelFile.delete();
+//        }
+//
+//        buildModel(trainFile, develFile, modelFile);
+//        saveModel();
 
-        File trainFile = new File(args[0]);
-        File develFile = new File(args[1]);
-        File modelFile = new File(args[2]);
 
-        if (modelFile.exists()) {
-            modelFile.delete();
-        }
+        FileInputStream fis = new FileInputStream("transition-probability.ser");
+        ObjectInputStream ois = new ObjectInputStream(fis);
+        Model readMap = (Model) ois.readObject();
+        ois.close();
 
-        buildModel(trainFile, develFile, modelFile);
+        System.out.println("Hello");
+
+    }
+
+    public static void saveModel() throws IOException {
+        Gson gson = new Gson();
+        String json = gson.toJson(transitionProbability);
+        System.out.println(json);
+
+
+        FileOutputStream fos = new FileOutputStream("transition-probability.ser");
+        ObjectOutputStream oos = new ObjectOutputStream(fos);
+        oos.writeObject(transitionProbability);
+        oos.close();
     }
 
     public static void buildModel(File trainFile, File develFile, File modelFile) throws IOException {

@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Set;
 
-public class Model {
+public class Model implements Serializable {
     private HashMap<ConditionalProbability, Double> map;
 
     public Model() {

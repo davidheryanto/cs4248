@@ -1,4 +1,6 @@
-public class ConditionalProbability {
+import java.io.Serializable;
+
+public class ConditionalProbability implements Serializable {
     private String event;
     private String given;
 
@@ -9,6 +11,11 @@ public class ConditionalProbability {
 
     public String getEvent() {
         return event;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("P(%s|%s)",event, given);
     }
 
     public String getGiven() {
