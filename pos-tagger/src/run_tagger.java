@@ -60,8 +60,8 @@ public class run_tagger {
         int stateLen = states.length;
         int stepLen = words.length;
 
-        double[][] viterbi = new double[stateLen + 2][stepLen];
-        int[][] backpointers = new int[stateLen + 2][stepLen];
+        double[][] viterbi = new double[stateLen + 2][stepLen + 1];
+        int[][] backpointers = new int[stateLen + 2][stepLen + 1];
 
         // Initialization
         for (int i = 0; i < stateLen; i++) {
@@ -89,9 +89,9 @@ public class run_tagger {
         for (int i = 0; i < stateLen; i++) {
             double val = viterbi[i][stepLen - 1]
                     * transitionProbability.get("</s>", states[i]);
-            if (val > viterbi[stateLen][stepLen - 1]) {
-                viterbi[stateLen][stepLen - 1] = val;
-                backpointers[stateLen][stepLen - 1] = i;
+            if (val > viterbi[stateLen][stepLen]) {
+                viterbi[stateLen][stepLen] = val;
+                backpointers[stateLen][stepLen] = i;
             }
         }
 
@@ -101,7 +101,7 @@ public class run_tagger {
         tags.add("</s> ");
         int stateIndex = stateLen;
 
-        for (int i = stepLen - 1; i >= 0; i--) {
+        for (int i = stepLen; i >= 0; i--) {
             if (backpointers[stateIndex][i] < 0) {
                 tags.add("<s> ");
                 continue;
