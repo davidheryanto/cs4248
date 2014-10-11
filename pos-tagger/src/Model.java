@@ -2,6 +2,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Set;
 
+
 public class Model implements Serializable {
     private HashMap<ConditionalProbability, Double> map;
 
@@ -14,13 +15,22 @@ public class Model implements Serializable {
         return get(condProb);
     }
 
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (ConditionalProbability condProb : map.keySet()) {
+            stringBuilder.append(condProb + " = " + map.get(condProb) + System.lineSeparator());
+        }
+        return stringBuilder.toString();
+    }
+
     public double get(ConditionalProbability condProb) {
         if (map.containsKey(condProb)) {
             return map.get(condProb);
         } else {
             // Haven't seen this conditional probability
             // TODO apply smoothing?
-            return 0;
+            return 0.0000005;
         }
     }
 

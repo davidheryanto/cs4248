@@ -1,11 +1,7 @@
-import com.google.gson.Gson;
-import com.sun.org.apache.xpath.internal.operations.Mod;
-import javafx.util.Pair;
-
 import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class build_tagger {
     private static Map<String, Integer> wordCount = new HashMap<>();
@@ -14,42 +10,29 @@ public class build_tagger {
     private static Model observationLikelihood = new Model();
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-//        args = new String[3];
-//        args[0] = "data/short.train";
-//        args[1] = "data/short.devt";
-//        args[2] = "model";
-//
-//        File trainFile = new File(args[0]);
-//        File develFile = new File(args[1]);
-//        File modelFile = new File(args[2]);
-//
-//        if (modelFile.exists()) {
-//            modelFile.delete();
-//        }
-//
-//        buildModel(trainFile, develFile, modelFile);
-//        saveModel();
+        args = new String[3];
+        args[0] = "data/sents.train";
+        args[1] = "data/sents.devt";
+        args[2] = "model_file";
 
+        File trainFile = new File(args[0]);
+        File develFile = new File(args[1]);
+        File modelFile = new File(args[2]);
+        File modelTransitionTxtFile = new File(args[2] + "-transition-probability.txt");
+        File modelObservationTxtFile = new File(args[2] + "-observation-likelihood.txt");
 
-        FileInputStream fis = new FileInputStream("transition-probability.ser");
-        ObjectInputStream ois = new ObjectInputStream(fis);
-        Model readMap = (Model) ois.readObject();
-        ois.close();
+        deleteExistingFile(modelFile);
+        deleteExistingFile(modelTransitionTxtFile);
+        deleteExistingFile(modelObservationTxtFile);
 
-        System.out.println("Hello");
-
+        buildModel(trainFile, develFile, modelFile);
+        saveModel(modelFile, modelTransitionTxtFile, modelObservationTxtFile);
     }
 
-    public static void saveModel() throws IOException {
-        Gson gson = new Gson();
-        String json = gson.toJson(transitionProbability);
-        System.out.println(json);
-
-
-        FileOutputStream fos = new FileOutputStream("transition-probability.ser");
-        ObjectOutputStream oos = new ObjectOutputStream(fos);
-        oos.writeObject(transitionProbability);
-        oos.close();
+    public static void deleteExistingFile(File fileToDelete) {
+        if (fileToDelete.exists()) {
+            fileToDelete.delete();
+        }
     }
 
     public static void buildModel(File trainFile, File develFile, File modelFile) throws IOException {
@@ -62,14 +45,30 @@ public class build_tagger {
         // TODO: Tune the model using develFile
     }
 
+    public static void saveModel(File modelBinaryFile,
+                                 File modelTransitionTxtFile,
+                                 File modelObservationTxtFile) throws IOException {
+        // Save serialized binary format
+        ArrayList<Model> models = new ArrayList<>();
+        models.add(transitionProbability);
+        models.add(observationLikelihood);
 
-    public static void updateModel(Model model) {
-        for (ConditionalProbability condProb : model.keySet()) {
-            Double numerator = model.get(condProb);
-            String given = condProb.getGiven();
-            Integer denominator = tagCount.get(given);
-            model.put(condProb, numerator / denominator);
-        }
+        ObjectOutputStream oos = new ObjectOutputStream(
+                new FileOutputStream(modelBinaryFile));
+        oos.writeObject(models);
+        oos.close();
+
+        // Save readable format
+        PrintWriter writer = new PrintWriter(new FileOutputStream(modelTransitionTxtFile));
+        writer.println("TransitionProbability");
+        writer.println(getSeparator(30));
+        writer.println(transitionProbability);
+        writer.close();
+
+        writer = new PrintWriter(new FileOutputStream(modelObservationTxtFile));
+        writer.println("ObservationLikelihood");
+        writer.println(getSeparator(30));
+        writer.println(observationLikelihood);
     }
 
     public static void updateCount(File inputFile) throws IOException {
@@ -81,19 +80,34 @@ public class build_tagger {
         }
     }
 
+    public static void updateModel(Model model) {
+        for (ConditionalProbability condProb : model.keySet()) {
+            Double numerator = model.get(condProb);
+            String given = condProb.getGiven();
+            Integer denominator = tagCount.get(given);
+            model.put(condProb, numerator / denominator);
+        }
+    }
+
+    public static String getSeparator(int charCount) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < charCount; i++) {
+            stringBuilder.append("=");
+        }
+        return stringBuilder.toString();
+    }
+
     public static void updateCount(String line) {
         String[] wordTagPairs = line.split(" ");
         String previousTag = "<s>";
         updateCount(tagCount, previousTag);
 
         for (String wordTagPair : wordTagPairs) {
-            String[] parts = wordTagPair.split("/");
-            if (parts.length != 2) {
-                System.err.println(wordTagPair + " is not in word/tag format");
-                continue;
-            }
-            String word = parts[0];
-            String tag = parts[1];
+            // ASSUMPTIONS: each wordTagPair is separated by 'space' character
+            int slashIndex = wordTagPair.lastIndexOf('/');
+            String word = wordTagPair.substring(0, slashIndex).toLowerCase();
+            String tag = wordTagPair.substring(slashIndex + 1);
+
             updateCount(wordCount, word);
             updateCount(tagCount, tag);
             updateCount(transitionProbability, tag, previousTag);
