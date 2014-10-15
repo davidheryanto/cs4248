@@ -36,7 +36,6 @@ public class build_tagger {
     }
 
     public static void buildModel(File trainFile, File develFile, File modelFile) throws IOException {
-
         updateCount(trainFile);
         updateModel(transitionProbability);
         updateModel(observationLikelihood);
@@ -127,6 +126,7 @@ public class build_tagger {
     }
 
     public static void updateCount(Model model, String event, String given) {
+        // Update the count of (given, event)
         Double value = model.containsProb(event, given) ?
                 model.get(event, given) + 1 : 1;
         model.put(event, given, value);

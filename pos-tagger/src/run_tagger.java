@@ -2,9 +2,8 @@ import java.io.*;
 import java.util.ArrayList;
 
 /**
- * TODO:
- * 1. Handle new words -> smoothing?
- * 2. Tune the model -> use dev -> how?
+ * TODO: Handle new words -> smoothing?
+ * TODO: Tune the model -> use dev -> how?
  */
 
 
@@ -46,6 +45,7 @@ public class run_tagger {
 
         while (line != null) {
             String result = getTagsForLine(line);
+            // TODO: result should just return the tags -> print the words in original case
             writer.println(result);
             line = reader.readLine();
         }
@@ -75,7 +75,7 @@ public class run_tagger {
             for (int j = 0; j < stateLen; j++) {
                 for (int k = 0; k < stateLen; k++) {
                     double val = viterbi[k][i - 1]
-                            * transitionProbability.get(states[k], states[j])
+                            * transitionProbability.get(states[j], states[k])
                             * observationLikelihood.get(words[i], states[j]);
                     if (val > viterbi[j][i]) {
                         viterbi[j][i] = val;
