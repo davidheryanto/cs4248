@@ -1,5 +1,7 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  * TODO: Handle new words -> smoothing?
@@ -44,14 +46,24 @@ public class run_tagger {
         String line = reader.readLine();
 
         while (line != null) {
-            String result = getTagsForLine(line);
-            // TODO: result should just return the tags -> print the words in original case
-            writer.println(result);
+            String[] tags = getTagsForLine(line);
+            String[] words = line.split(" ");
+
+            for (int i = 0; i < words.length; i++) {
+                if (i > tags.length - 1) {
+                    // Error in parsing where tags and words not matching
+                    continue;
+                }
+
+                System.out.print(String.format("%s/%s ", words[i], tags[i]));
+            }
+            System.out.println();
+
             line = reader.readLine();
         }
     }
 
-    public static String getTagsForLine(String line) {
+    public static String[] getTagsForLine(String line) {
         // Adapted from Speech and Language Processing by Jurafsky and Marting Sec 5.5.3
 
         line = line.toLowerCase();
@@ -95,34 +107,33 @@ public class run_tagger {
             }
         }
 
-
-        // System.out.println(line);
         ArrayList<String> tags = new ArrayList<>();
-        tags.add("</s> ");
         int stateIndex = stateLen;
 
         for (int i = stepLen; i >= 0; i--) {
             if (backpointers[stateIndex][i] < 0) {
-                tags.add("<s> ");
-                continue;
+                break;
             }
 
             tags.add(states[backpointers[stateIndex][i]]);
             stateIndex = backpointers[stateIndex][i];
         }
 
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = tags.size() - 1; i >= 0; i--) {
-            stringBuilder.append(tags.get(i) + " ");
-        }
+        Collections.reverse(tags);
+        return tags.toArray(new String[tags.size()]);
 
-        System.out.println("==========================");
-        System.out.println(tags.get(tags.size() - 1));
-        for (int i = 0; i < words.length; i++) {
-            System.out.println(words[i] + "/" + tags.get(tags.size() - 2 - i));
-        }
-        System.out.println(tags.get(0));
-
-        return "";
+//        StringBuilder stringBuilder = new StringBuilder();
+//        for (int i = tags.size() - 1; i >= 0; i--) {
+//            stringBuilder.append(tags.get(i) + " ");
+//        }
+//
+//        System.out.println("==========================");
+//        System.out.println(tags.get(tags.size() - 1));
+//        for (int i = 0; i < words.length; i++) {
+//            System.out.println(words[i] + "/" + tags.get(tags.size() - 2 - i));
+//        }
+//        System.out.println(tags.get(0));
+//
+//        return "";
     }
 }
