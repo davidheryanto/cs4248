@@ -6,8 +6,17 @@ import java.util.Map;
 public class build_tagger {
     private static Map<String, Integer> wordCount = new HashMap<>();
     private static Map<String, Integer> tagCount = new HashMap<>();
+
     private static Model transitionProbability = new Model();
     private static Model observationLikelihood = new Model();
+
+    public static Model getTransitionProbability() {
+        return transitionProbability;
+    }
+
+    public static Model getObservationLikelihood() {
+        return observationLikelihood;
+    }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         args = new String[3];
@@ -25,7 +34,7 @@ public class build_tagger {
         deleteExistingFile(modelTransitionTxtFile);
         deleteExistingFile(modelObservationTxtFile);
 
-        buildModel(trainFile, develFile, modelFile);
+        buildModel(trainFile, develFile);
         saveModel(modelFile, modelTransitionTxtFile, modelObservationTxtFile);
     }
 
@@ -35,7 +44,7 @@ public class build_tagger {
         }
     }
 
-    public static void buildModel(File trainFile, File develFile, File modelFile) throws IOException {
+    public static void buildModel(File trainFile, File develFile) throws IOException {
         updateCount(trainFile);
         updateModel(transitionProbability);
         updateModel(observationLikelihood);
@@ -57,7 +66,7 @@ public class build_tagger {
         oos.writeObject(models);
         oos.close();
 
-        // Save readable format
+        // Save to readable format
         PrintWriter writer = new PrintWriter(new FileOutputStream(modelTransitionTxtFile));
         writer.println("TransitionProbability");
         writer.println(getSeparator(30));
@@ -130,5 +139,24 @@ public class build_tagger {
         Double value = model.containsProb(event, given) ?
                 model.get(event, given) + 1 : 1;
         model.put(event, given, value);
+    }
+
+    public static void buildModel(ArrayList<String> trainData, File develFile) {
+        updateCount(trainData);
+        updateModel(transitionProbability);
+        updateModel(observationLikelihood);
+    }
+
+    public static void updateCount(ArrayList<String> trainData) {
+        for (String line : trainData) {
+            updateCount(line);
+        }
+    }
+
+    public static void resetModel() {
+        wordCount = new HashMap<>();
+        tagCount = new HashMap<>();
+        transitionProbability = new Model();
+        observationLikelihood = new Model();
     }
 }

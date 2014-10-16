@@ -16,6 +16,11 @@ public class run_tagger {
             "CC", "CD", "DT", "EX", "FW", "IN", "JJ", "JJR", "JJS", "LS", "MD", "NN", "NNS", "NNP", "NNPS", "PDT", "POS", "PRP", "PRP$", "RB", "RBR", "RBS", "RP", "SYM", "TO", "UH", "VB", "VBD", "VBG", "VBN", "VBP", "VBZ", "WDT", "WP", "WP$", "WRB", "$", "#", "``", "''", "(", ")", ",", ".", ":"
     };
 
+    public static void setModel(Model _transitionProbability, Model _observationLikelihood) {
+        transitionProbability = _transitionProbability;
+        observationLikelihood = _observationLikelihood;
+    }
+
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         args = new String[3];
         args[0] = "data/sents.test";

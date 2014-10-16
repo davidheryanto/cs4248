@@ -2,10 +2,13 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class FileSplitter {
-    public static void main(String[] args) throws IOException {
-        FileSplitter.split(new File("data/sents.train"), 10);
-    }
-
+    /**
+     *
+     * @param file
+     * @param foldCount
+     * @return List of (trainData, testData)
+     * @throws IOException
+     */
     public static ArrayList<Pair<ArrayList<String>, ArrayList<String>>> split(File file, int foldCount) throws IOException {
         int lineCount = getLineCount(file);
         int lineCountForTesting = lineCount / foldCount;
@@ -24,11 +27,9 @@ public class FileSplitter {
 
             while (line != null) {
                 if (lineIndex >= startIndexForTesting && lineIndex <= endIndexForTesting) {
-                    testing.add("\n============" + lineIndex +
-                            "============\n" + line);
+                    testing.add(line);
                 } else {
-                    training.add("\n============" + lineIndex +
-                            "============\n" + line);
+                    training.add(line);
                 }
                 lineIndex += 1;
                 line = reader.readLine();
@@ -38,7 +39,7 @@ public class FileSplitter {
             validationSets.add(new Pair<ArrayList<String>, ArrayList<String>>(training, testing));
         }
 
-        test(validationSets);
+        // test(validationSets);
 
         return validationSets;
     }
