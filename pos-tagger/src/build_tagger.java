@@ -19,10 +19,10 @@ public class build_tagger {
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        args = new String[3];
-        args[0] = "data/sents.train";
-        args[1] = "data/sents.devt";
-        args[2] = "model_file";
+//        args = new String[3];
+//        args[0] = "data/sents.train";
+//        args[1] = "data/sents.devt";
+//        args[2] = "model_file";
 
         File trainFile = new File(args[0]);
         File develFile = new File(args[1]);

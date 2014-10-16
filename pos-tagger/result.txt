@@ -75,3 +75,23 @@ Fold  Accuracy
 
 Average accuracy : 0.933291
 For unknown word and bigram use P=0.0000001
+
+//////////////////////////////////////
+
+10-fold Evaluation
+
+Fold  Accuracy
+=========================
+   1  0.91960
+   2  0.92041
+   3  0.92470
+   4  0.92370
+   5  0.92102
+   6  0.92395
+   7  0.92065
+   8  0.92008
+   9  0.92561
+  10  0.92205
+
+Average accuracy : 0.922177
+For unknown word and bigram use the minimum of model

@@ -22,10 +22,10 @@ public class run_tagger {
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        args = new String[3];
-        args[0] = "data/sents.test";
-        args[1] = "model_file";
-        args[2] = "short.out";
+//        args = new String[3];
+//        args[0] = "data/sents.test";
+//        args[1] = "model_file";
+//        args[2] = "short.out";
 
         File testFile = new File(args[0]);
         File modelFile = new File(args[1]);
@@ -60,12 +60,12 @@ public class run_tagger {
                     continue;
                 }
 
-                System.out.print(String.format("%s/%s ", words[i], tags[i]));
+                writer.print(String.format("%s/%s ", words[i], tags[i]));
             }
-            System.out.println();
-
+            writer.println();
             line = reader.readLine();
         }
+        writer.close();
     }
 
     public static String[] getTagsForLine(String line) {
