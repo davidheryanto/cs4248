@@ -39,7 +39,7 @@ public class FileSplitter {
             validationSets.add(new Pair<ArrayList<String>, ArrayList<String>>(training, testing));
         }
 
-        // test(validationSets);
+        // testSplitter(validationSets);
 
         return validationSets;
     }
@@ -51,7 +51,7 @@ public class FileSplitter {
         return  lnr.getLineNumber() + 1;
     }
 
-    private static void test(ArrayList<Pair<ArrayList<String>, ArrayList<String>>> validationSets) throws FileNotFoundException {
+    private static void testSplitter(ArrayList<Pair<ArrayList<String>, ArrayList<String>>> validationSets) throws FileNotFoundException {
         int index = 1;
         for (Pair<ArrayList<String>, ArrayList<String>> set : validationSets) {
             ArrayList<String> training = set.getFirst();

@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 /**
@@ -13,6 +12,7 @@ public class run_tagger {
     private static Model transitionProbability;
     private static Model observationLikelihood;
     private static Model affixProbability;
+    // tags from Penn Treebank
     private static String[] states = {
             "CC", "CD", "DT", "EX", "FW", "IN", "JJ", "JJR", "JJS", "LS", "MD", "NN", "NNS", "NNP", "NNPS", "PDT", "POS", "PRP", "PRP$", "RB", "RBR", "RBS", "RP", "SYM", "TO", "UH", "VB", "VBD", "VBG", "VBN", "VBP", "VBZ", "WDT", "WP", "WP$", "WRB", "$", "#", "``", "''", "(", ")", ",", ".", ":"
     };
@@ -28,11 +28,6 @@ public class run_tagger {
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-//        args = new String[3];
-//        args[0] = "data/sents.test";
-//        args[1] = "model_file";
-//        args[2] = "short.out";
-
         File testFile = new File(args[0]);
         File modelFile = new File(args[1]);
         File outFile = new File(args[2]);

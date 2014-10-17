@@ -16,33 +16,23 @@ public class build_tagger {
     public static Map<String, Integer> getTagCount() {
         return tagCount;
     }
-
     public static Map<String, Integer> getWordCount() {
         return wordCount;
     }
-
     public static Model getTransitionProbability() {
         return transitionProbability;
     }
-
     public static Model getObservationLikelihood() {
         return observationLikelihood;
     }
-
     public static Model getAffixProbability() {
         return affixProbability;
     }
-
     public static Model getTagProbability() {
         return tagProbability;
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-//        args = new String[3];
-//        args[0] = "data/sents.train";
-//        args[1] = "data/sents.devt";
-//        args[2] = "model_file";
-
         File trainFile = new File(args[0]);
         File develFile = new File(args[1]);
         File modelFile = new File(args[2]);

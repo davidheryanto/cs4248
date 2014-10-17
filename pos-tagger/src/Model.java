@@ -40,18 +40,19 @@ public class Model implements Serializable {
         if (map.containsKey(condProb)) {
             return map.get(condProb);
 
-            // FOR smoothing
-            // ============
-//                        if (type == TRANSITION_PROBABILITY) {
-//                            String given = condProb.getGiven();
-//                            double discount = 0.75;
-//                            discount = discount / build_tagger.getTagCount().get(given);
-//                            return map.get(condProb) - discount;
-//
-//                        } else {
-//                            return map.get(condProb);
-//                        }
-        } else {
+            // FOR absolute smoothing
+            // Uncomment to use
+            // ======================
+            // if (type == TRANSITION_PROBABILITY) {
+            //     String given = condProb.getGiven();
+            //     double discount = 0.75;
+            //     discount = discount / build_tagger.getTagCount().get(given);
+            //     return map.get(condProb) - discount;
+            //
+            // } else {
+            //     return map.get(condProb);
+            // }
+        } else
             // Haven't seen this conditional probability
 
             // Unknown words, use the affixes to get the probability measure
@@ -74,19 +75,21 @@ public class Model implements Serializable {
                 }
             }
 
-            // None of the affixes have been seen either.
+        // None of the affixes have been seen either.
 
-            // Smoothing
-//                        if (type == TRANSITION_PROBABILITY) {
-            //                            String tag = condProb.getEvent();
-            //                            Model tagProbablity = build_tagger.getTagProbability();
-            //                            if (tagProbablity.containsProb(tag, "")) {
-            //                                double alpha = 0.5;
-            //                                return alpha * tagProbablity.get(tag, "");
-            //                            }
-            //                        }
-            return 0.00000001;
-        }
+        // FOR absolute smoothing
+        // Uncomment to use
+        // ===========================================
+        // if (type == TRANSITION_PROBABILITY) {
+        //     String tag = condProb.getEvent();
+        //     Model tagProbablity = build_tagger.getTagProbability();
+        //     if (tagProbablity.containsProb(tag, "")) {
+        //         double alpha = 0.5;
+        //         return alpha * tagProbablity.get(tag, "");
+        //     }
+        // }
+
+        return 0.00000001;
     }
 
     public double getMin() {
