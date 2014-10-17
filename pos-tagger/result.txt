@@ -76,6 +76,26 @@ Fold  Accuracy
 Average accuracy : 0.933291
 For unknown word and bigram use P=0.0000001
 
+///////////////////////////////////
+
+10-fold Evaluation
+
+Fold  Accuracy
+=========================
+   1  0.92999
+   2  0.93187
+   3  0.93513
+   4  0.93411
+   5  0.93264
+   6  0.93512
+   7  0.93127
+   8  0.93232
+   9  0.93680
+  10  0.93248
+
+Average accuracy : 0.933172
+For unknown word and bigram use P=0.00000001
+
 //////////////////////////////////////
 
 10-fold Evaluation
@@ -95,3 +115,24 @@ Fold  Accuracy
 
 Average accuracy : 0.922177
 For unknown word and bigram use the minimum of model
+
+///////////////////////////////////////////
+
+10-fold Evaluation
+
+Fold  Accuracy
+=========================
+   1  0.93581
+   2  0.93553
+   3  0.93960
+   4  0.93778
+   5  0.93665
+   6  0.93995
+   7  0.93583
+   8  0.93549
+   9  0.93962
+  10  0.93654
+
+Average accuracy : 0.937279
+Using affix with 2 <= len <= 5
+and double normalisation = Math.pow(normalisationFactor, 4 - affix.length() + 5);

@@ -1,14 +1,23 @@
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 
 
 public class Model implements Serializable {
+    // These constants to distinguish diff model types
+    public static final int TRANSITION_PROBABILITY = 1;
+    public static final int OBSERVATION_LIKELIHOOD = 2;
+    public static final int AFFIX_PROBABILITY = 3;
+    public static final int TAG_PROBABILITY = 4;
+
+    // Minimum probability in this model
+    private static double modelMin;
+    private int type;  // either transition prob /observation likelihood
     private HashMap<ConditionalProbability, Double> map;
 
-    private static double modelMin;
-
-    public Model() {
+    public Model(int type) {
+        this.type = type;
         map = new HashMap<>();
         modelMin = -1;
     }
@@ -30,9 +39,53 @@ public class Model implements Serializable {
     public double get(ConditionalProbability condProb) {
         if (map.containsKey(condProb)) {
             return map.get(condProb);
+
+            // FOR smoothing
+            // ============
+//                        if (type == TRANSITION_PROBABILITY) {
+//                            String given = condProb.getGiven();
+//                            double discount = 0.75;
+//                            discount = discount / build_tagger.getTagCount().get(given);
+//                            return map.get(condProb) - discount;
+//
+//                        } else {
+//                            return map.get(condProb);
+//                        }
         } else {
             // Haven't seen this conditional probability
-            return 0.0000001;
+
+            // Unknown words, use the affixes to get the probability measure
+            if (type == OBSERVATION_LIKELIHOOD) {
+                double val = 0;
+                double normalisationFactor = 4; // The max len of affix
+                Model affixProb = run_tagger.getAffixProbability();
+                ArrayList<String> affixes = build_tagger.getAffixes(condProb.getEvent());
+                String tag = condProb.getGiven();
+
+                for (String affix : affixes) {
+                    if (affixProb.containsProb(affix, tag)) {
+                        double normalisation = Math.pow(normalisationFactor, 4 - affix.length() + 5);
+                        val += affixProb.get(affix, tag) / normalisation;
+                    }
+                }
+
+                if (val > 0) {
+                    return val;
+                }
+            }
+
+            // None of the affixes have been seen either.
+
+            // Smoothing
+//                        if (type == TRANSITION_PROBABILITY) {
+            //                            String tag = condProb.getEvent();
+            //                            Model tagProbablity = build_tagger.getTagProbability();
+            //                            if (tagProbablity.containsProb(tag, "")) {
+            //                                double alpha = 0.5;
+            //                                return alpha * tagProbablity.get(tag, "");
+            //                            }
+            //                        }
+            return 0.00000001;
         }
     }
 
@@ -63,6 +116,10 @@ public class Model implements Serializable {
 
     public boolean containsProb(String event, String given) {
         ConditionalProbability condProb = new ConditionalProbability(event, given);
+        return map.containsKey(condProb);
+    }
+
+    public boolean contains(ConditionalProbability condProb) {
         return map.containsKey(condProb);
     }
 

@@ -43,7 +43,7 @@ public class Evaluator {
 
         build_tagger.resetModel();
         build_tagger.buildModel(trainData, develData);
-        run_tagger.setModel(build_tagger.getTransitionProbability(), build_tagger.getObservationLikelihood());
+        run_tagger.setModel(build_tagger.getTransitionProbability(), build_tagger.getObservationLikelihood(), build_tagger.getAffixProbability());
 
         for (String lineWithTags : testData) {
             String line = getLineWithoutTags(lineWithTags);

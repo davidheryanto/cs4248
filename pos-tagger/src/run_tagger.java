@@ -12,13 +12,19 @@ import java.util.Collections;
 public class run_tagger {
     private static Model transitionProbability;
     private static Model observationLikelihood;
+    private static Model affixProbability;
     private static String[] states = {
             "CC", "CD", "DT", "EX", "FW", "IN", "JJ", "JJR", "JJS", "LS", "MD", "NN", "NNS", "NNP", "NNPS", "PDT", "POS", "PRP", "PRP$", "RB", "RBR", "RBS", "RP", "SYM", "TO", "UH", "VB", "VBD", "VBG", "VBN", "VBP", "VBZ", "WDT", "WP", "WP$", "WRB", "$", "#", "``", "''", "(", ")", ",", ".", ":"
     };
 
-    public static void setModel(Model _transitionProbability, Model _observationLikelihood) {
+    public static void setModel(Model _transitionProbability, Model _observationLikelihood, Model _affixProbability) {
         transitionProbability = _transitionProbability;
         observationLikelihood = _observationLikelihood;
+        affixProbability = _affixProbability;
+    }
+
+    public static Model getAffixProbability() {
+        return affixProbability;
     }
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
@@ -43,6 +49,7 @@ public class run_tagger {
 
         transitionProbability = models.get(0);
         observationLikelihood = models.get(1);
+        affixProbability = models.get(2);
     }
 
     public static void tagFile(File testFile, File outFile) throws IOException {
@@ -126,19 +133,5 @@ public class run_tagger {
 
         Collections.reverse(tags);
         return tags.toArray(new String[tags.size()]);
-
-//        StringBuilder stringBuilder = new StringBuilder();
-//        for (int i = tags.size() - 1; i >= 0; i--) {
-//            stringBuilder.append(tags.get(i) + " ");
-//        }
-//
-//        System.out.println("==========================");
-//        System.out.println(tags.get(tags.size() - 1));
-//        for (int i = 0; i < words.length; i++) {
-//            System.out.println(words[i] + "/" + tags.get(tags.size() - 2 - i));
-//        }
-//        System.out.println(tags.get(0));
-//
-//        return "";
     }
 }
