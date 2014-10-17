@@ -56,15 +56,18 @@ public class run_tagger {
             String[] tags = getTagsForLine(line);
             String[] words = line.split(" ");
 
+            StringBuilder builder = new StringBuilder();
             for (int i = 0; i < words.length; i++) {
                 if (i > tags.length - 1) {
                     // Error in parsing where tags and words not matching
                     continue;
                 }
 
-                writer.print(String.format("%s/%s ", words[i], tags[i]));
+                builder.append(String.format("%s/%s ", words[i], tags[i]));
             }
-            writer.println();
+            String out = builder.substring(0, builder.length() - 1).toString();  // Remove extra space
+            writer.println(out);
+
             line = reader.readLine();
         }
         writer.close();
